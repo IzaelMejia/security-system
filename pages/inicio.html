@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Personas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    
+   <div class="contenedorTodo">
+
+    <div class="conteidoInfo">
+        <img class="logo" src="/contenidoInfoPersonas/itpLogo.png" alt="">
+        <h2>Contenido</h2>
+        <div class="infoPersonas">
+            <img class="iconosEntradas" src="/contenidoInfoPersonas/puertaEntrada.png" alt="">
+            <p >Entrantes</p>
+            <p class="contadorInicial" id="leftCount">0</p>
+        </div>
+        <div class="infoPersonas">
+            <img class="iconosEntradas" src="/contenidoInfoPersonas/puertaSalida.png" alt="">
+            <p>Salidas</p>
+            <p class="contadorInicial" id="rightCount">0</p>
+        </div>
+        <div class="infoPersonas">
+            <img class="iconosEntradas" src="/contenidoInfoPersonas/grafico.png" alt="">
+            <p>General</p>
+            <p class="contadorInicial" id="generalCount">0</p>
+        </div>
+        
+        <div class="contenedorInfo">
+            <h3 class="tituloInfo">Reiniciar contador</h3>
+            <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
+            <button class="botones">Reset</button>
+        </div>
+
+        <div class="contenedorInfo">
+            <h3 class="tituloInfo">Reporte</h3>
+            <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
+            <button class="botones">Generar</button>
+        </div>
+    </div>
+
+    <div class="contenedorPanelyCamara">
+        <div class="panelUsuario">
+            <h1 class="tituloInicial">Panel usuario</h1>
+            <div class="iconoContainer">
+                <img class="iconoUsuario" src="/contenidoInfoPersonas/usuario.png" alt="">
+                <p>Arturo Hernandez Cruz</p>
+            </div>
+        </div> 
+        
+        <div id="container" class="contenedorCamara">
+            <video id="video" class="video" width="640" height="480" autoplay></video>
+            <canvas id="output"  class="output" width="640" height="480"></canvas>
+        </div>
+    <div>
+
+
+   </div>
+
+    <!-- LLamamos al DOM aquí -->
+    <!-- <div id="container">
+        <video id="video" width="640" height="480" autoplay></video>
+        <canvas id="output" width="640" height="480"></canvas>
+        <p id="leftCount">Personas Salida: 0</p>
+        <p id="rightCount">Personas Entrada: 0</p>
+    </div> -->
+
+    <!-- Scripts necesarios (tensorflow, coco-ssd, opencv) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <script src="https://docs.opencv.org/master/opencv.js"></script>
+
+    <!-- Código JavaScript -->
+    <script src="/Detector.js"></script>
+</body>
+</html>
