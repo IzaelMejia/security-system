@@ -25,6 +25,30 @@
     async function loadModel() {
         model = await cocoSsd.load();
     }
+    
+//-------------------------------------------------------------------------------------------------------
+// Función para registrar el movimiento en la base de datos
+function sendDataToServer(count, direction) {
+    const data = {
+        count: count,
+        direction: direction
+    };
+
+    // Realizar una solicitud POST al servidor
+    axios.post('/inicio', data)
+        .then(response => {
+            // Manejar la respuesta del servidor, si es necesario
+            console.log('Datos enviados al servidor');
+        })
+        .catch(error => {
+            console.error('Error al enviar datos al servidor', error);
+        });
+}
+
+
+
+//-------------------------------------------------------------------------------------------------------
+
 
     // Función principal para detectar personas y contar
     async function detectPeople() {
@@ -79,10 +103,14 @@
                                 if (centerX < detectionArea.x + detectionArea.width / 2) {
                                     // Persona se dirige hacia la izquierda
                                     leftCount++;
+                                    sendDataToServer(leftCount, 'left');
                                 } else {
                                     // Persona se dirige hacia la derecha
                                     rightCount++;
+                                    sendDataToServer(rightCount, 'right');
                                 }
+                                sendDataToServer(generalCount, 'general');
+                        
                             }
                         } else {
                             // Persona fuera del área de detección
@@ -98,6 +126,9 @@
                 // Actualizar el contador general
                 generalCount = leftCount- rightCount ;
                 document.getElementById('generalCount').innerHTML = `${generalCount}`;
+                
+                //----------------------------------------------AGREGADO---------------------------
+            
 
             // Realizar la detección en el siguiente cuadro de video
             requestAnimationFrame(detect);

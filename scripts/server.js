@@ -15,22 +15,24 @@ const connection = require('./db'); // Archivo que contiene la configuración de
 // llamar a las rutas de registro y login
 const registroRoutes = require('./routes/registro');
 const loginRoutes = require('./routes/login');
+const contadorRoutes = require('./routes/contador');
 
 // Definir las rutas de la aplicación
 app.use('/', registroRoutes);
 app.use('/', loginRoutes);
+app.use('/', contadorRoutes);
 
 // Definir las rutas de los endpoints
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
+
 app.get('/inicio', (req, res) => {
   res.sendFile(path.join(__dirname, '..','pages', 'inicio.html'));
 });
 
 app.get('/registro', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'pages', 'register.html'));
-});
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 // Correr el servidor web

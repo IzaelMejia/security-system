@@ -5,9 +5,11 @@ personas que entran y salen y en general.
 1- tensorflow
 2- Tensorflow-models/coco-ssd
 3- opencv.js
+4- axios
 
 
 ---------Dependencias Instaladas --------
 npm install mysql2
 npm install express
 npm install body-parser
+npm install axios
