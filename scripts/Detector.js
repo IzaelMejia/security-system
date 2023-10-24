@@ -96,32 +96,9 @@
                 document.getElementById('rightCount').innerHTML = `${rightCount}`;
 
                 // Actualizar el contador general
-                generalCount = rightCount - leftCount;
+                generalCount = leftCount- rightCount ;
                 document.getElementById('generalCount').innerHTML = `${generalCount}`;
-                
-                // PARTE AGREGADA PARA GUARDAR LOS DATOS--------------------------------REVISAR---------------------------------------
-                 // Enviar datos al servidor
-                const data = {
-                    leftCount: leftCount,
-                    rightCount: rightCount,
-                    generalCount: generalCount
-                };
 
-                fetch('/guardarDatos', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                    .then(response => response.json())
-                    .then(result => {
-                        console.log('Datos enviados al servidor con éxito');
-                    })
-                    .catch(error => {
-                        console.error('Error al enviar datos al servidor:', error);
-                    });
-                //---------------------------------------------------------------------REVISAR----------------------------------------
             // Realizar la detección en el siguiente cuadro de video
             requestAnimationFrame(detect);
         }

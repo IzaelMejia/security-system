@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../db');
 
-router.post('/login', (req, res) => {
+router.post('/', (req, res) => {
   // Controlador para el inicio de sesión
     const usuario = req.body.username;
     const contrasena = req.body.password;

@@ -5,6 +5,8 @@ const app = express();
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, '../pages')));
+app.use(express.static(path.join(__dirname, '../Images')));
+app.use(express.static(path.join(__dirname, '../scripts')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -19,16 +21,16 @@ app.use('/', registroRoutes);
 app.use('/', loginRoutes);
 
 // Definir las rutas de los endpoints
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+app.get('/inicio', (req, res) => {
+  res.sendFile(path.join(__dirname, '..','pages', 'inicio.html'));
 });
 
 app.get('/registro', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'pages', 'Register.html'));
+  res.sendFile(path.join(__dirname, '..', 'pages', 'register.html'));
 });
 
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'pages', 'Login.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 // Correr el servidor web
