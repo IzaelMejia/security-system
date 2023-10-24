@@ -1,0 +1,13 @@
+Este es un proyecto con una camara en tiempo real que permita hacer un conteo de todas las 
+personas que entran y salen y en general.
+
+--------Librerias ocupadas--------
+1- tensorflow
+2- Tensorflow-models/coco-ssd
+3- opencv.js
+
+
+---------Dependencias Instaladas --------
+npm install mysql2
+npm install express
+npm install body-parser
