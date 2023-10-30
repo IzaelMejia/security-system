@@ -16,17 +16,17 @@
         <h2>Contenido</h2>
         <div class="infoPersonas">
             <img class="iconosEntradas" src="/contenidoInfoPersonas/puertaEntrada.png" alt="">
-            <p >Entrantes</p>
+            <p class="textoInfoESG">Entrantes</p>
             <p class="contadorInicial" id="leftCount">0</p>
         </div>
         <div class="infoPersonas">
             <img class="iconosEntradas" src="/contenidoInfoPersonas/puertaSalida.png" alt="">
-            <p>Salidas</p>
+            <p class="textoInfoESG">Salidas</p>
             <p class="contadorInicial" id="rightCount">0</p>
         </div>
         <div class="infoPersonas">
             <img class="iconosEntradas" src="/contenidoInfoPersonas/grafico.png" alt="">
-            <p>General</p>
+            <p class="textoInfoESG">General</p>
             <p class="contadorInicial" id="generalCount">0</p>
         </div>
         
@@ -37,7 +37,13 @@
         </div>
 
         <div class="contenedorInfo">
-            <h3 class="tituloInfo">Reporte</h3>
+            <h3 class="tituloInfo">Reporte pdf</h3>
+            <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
+            <button class="botones">Generar</button>
+        </div>
+
+        <div class="contenedorInfo">
+            <h3 class="tituloInfo">Reporte excel</h3>
             <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
             <button class="botones">Generar</button>
         </div>
@@ -45,10 +51,13 @@
 
     <div class="contenedorPanelyCamara">
         <div class="panelUsuario">
-            <h1 class="tituloInicial">Panel usuario</h1>
-            <div class="iconoContainer">
+            <h1 class="tituloInicial">Sistemas Computacionales</h1>
+            <!-- <div class="iconoContainer">
                 <img class="iconoUsuario" src="/contenidoInfoPersonas/usuario.png" alt="">
-                <p>Arturo Hernandez Cruz</p>
+                <p>Izael Mejía Lozada</p>
+            </div> -->
+            <div class="timeContainer">
+                <p id="realTime"></p>
             </div>
         </div> 
         
@@ -73,6 +82,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
     <script src="https://docs.opencv.org/master/opencv.js"></script>
+    <script src="tiempo.js"></script>
 
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -80,5 +90,6 @@
 
     <!-- Código JavaScript -->
     <script src="/Detector.js"></script>
+    
 </body>
 </html>

@@ -17,8 +17,14 @@ router.post('/', (req, res) => {
           console.error('Error al validar inicio de sesión:', error);
           res.send('Error al validar inicio de sesión');
         } else {
-          const mensaje = results[0][0].mensaje;
-          res.status(200).send(mensaje);
+          const mensaje = results[0][0];
+          //console.log(results)
+          if (mensaje && mensaje.mensaje === 'Inicio Exitoso') {
+
+            //const indexPath = path.join(__dirname,'..','..', 'index.html');
+            //res.sendFile(indexPath);
+            res.redirect('/inicio')
+          }
         }
       }
     );

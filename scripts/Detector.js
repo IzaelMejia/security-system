@@ -101,16 +101,18 @@ function sendDataToServer(count, direction) {
                                 personInside = true;
             
                                 if (centerX < detectionArea.x + detectionArea.width / 2) {
-                                    // Persona se dirige hacia la izquierda
+                                    // Persona se dirige hacia la izquierda (ENTRADA)
                                     leftCount++;
+                                    generalCount++
                                     sendDataToServer(leftCount, 'left');
-                                } else {
-                                    // Persona se dirige hacia la derecha
+                                    
+                                } else {                                
+                                    // Persona se dirige hacia la derecha (salida)
                                     rightCount++;
+                                    generalCount--
                                     sendDataToServer(rightCount, 'right');
                                 }
                                 sendDataToServer(generalCount, 'general');
-                        
                             }
                         } else {
                             // Persona fuera del área de detección
@@ -119,15 +121,15 @@ function sendDataToServer(count, direction) {
                     }
                 });
 
-                // Actualizar los contadores
+                // Actualizar los contadores Izquierda y derecha
                 document.getElementById('leftCount').innerHTML = `${leftCount}`;
                 document.getElementById('rightCount').innerHTML = `${rightCount}`;
 
                 // Actualizar el contador general
-                generalCount = leftCount- rightCount ;
+                // Permite que los valores no sean negativos del conteo general
+                generalCount = Math.max(leftCount - rightCount, 0); 
                 document.getElementById('generalCount').innerHTML = `${generalCount}`;
                 
-                //----------------------------------------------AGREGADO---------------------------
             
 
             // Realizar la detección en el siguiente cuadro de video

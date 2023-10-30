@@ -23,16 +23,16 @@
                             <label for="password" class="labelInput">PASSWORD</label>
                             <input type="password" id="password" name="password" class="inputData" placeholder="********">
                         </div>
-                        <div class="remember">
+                            <div class="remember">
                             <div>
-                                <img src="../Images/Login/casilla.png" alt="" class="iconBox">
                                 <label for="remember" class="lebelRemember">Recuérdame</label>
                                 <input type="checkbox" id="remember" name="remember">
                             </div>
                             <label for="forgot" class="lebelRemember labelRememberPassword">¿Olvidaste tu contraseña?</label>
                         </div>
+                        
                         <div class="containerLoginCreate">
-                            <label for="createCount" class="labelCreateCount">Crear cuenta</label>
+                            <label for="createCount" class="labelCreateCount" id="crearCuentaLabel">Crear cuenta</label>
                             <button type="submit" class="buttonLogin">Aceptar</button>
                         </div>
                     </form> <!-- Cierre del formulario -->
@@ -45,6 +45,13 @@
         </footer>
         
     </div>
+
+<!-- script Pasar de Inicio de sesión a Registro -->
+    <script>
+        document.getElementById('crearCuentaLabel').addEventListener('click', function () {
+            window.location.href = '/registro';
+        });
+    </script>
     
 </body>
 </html>

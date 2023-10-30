@@ -88,6 +88,9 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 10px;
 
 }
 
@@ -112,6 +115,7 @@
     width: 78%;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
 }
 
 .labelCreateCount{
@@ -150,5 +154,7 @@ footer{
     text-align: center;
     padding: 10px;
 }
+
+
 
 
