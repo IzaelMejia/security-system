@@ -2,14 +2,15 @@ Este es un proyecto con una camara en tiempo real que permita hacer un conteo de
 personas que entran y salen y en general.
 
 --------Librerias ocupadas--------
-1- tensorflow
-2- Tensorflow-models/coco-ssd
-3- opencv.js
-4- axios
+1- tensorflow                       Detectar personas
+2- Tensorflow-models/coco-ssd       Detectar personas
+3- opencv.js                        
+4- axios                            
+5-flatpickr                         Calendario
 
 
 ---------Dependencias Instaladas --------
-npm install mysql2
-npm install express
+npm install mysql2                  Base de datos  mysql  
+npm install express                 Servidor 
 npm install body-parser
 npm install axios

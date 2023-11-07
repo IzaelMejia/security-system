@@ -4,72 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador de Personas</title>
+    <!-- CALENDARIO -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+    <!-- Fin calendario -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/reportes.css">
 </head>
 <body>
     
    <div class="contenedorTodo">
 
-    <div class="conteidoInfo">
-        <img class="logo" src="/contenidoInfoPersonas/itpLogo.png" alt="">
-        <h2>Contenido</h2>
-        <div class="infoPersonas">
-            <img class="iconosEntradas" src="/contenidoInfoPersonas/puertaEntrada.png" alt="">
-            <p class="textoInfoESG">Entrantes</p>
-            <p class="contadorInicial" id="leftCount">0</p>
+        <div class="conteidoInfo">
+            <img class="logo" src="/contenidoInfoPersonas/itpLogo.png" alt="">
+            <h2>Contenido</h2>
+            <div class="infoPersonas">
+                <img class="iconosEntradas" src="/contenidoInfoPersonas/puertaEntrada.png" alt="">
+                <p class="textoInfoESG">Entrantes</p>
+                <p class="contadorInicial" id="leftCount">0</p>
+            </div>
+            <div class="infoPersonas">
+                <img class="iconosEntradas" src="/contenidoInfoPersonas/puertaSalida.png" alt="">
+                <p class="textoInfoESG">Salidas</p>
+                <p class="contadorInicial" id="rightCount">0</p>
+            </div>
+            <div class="infoPersonas">
+                <img class="iconosEntradas" src="/contenidoInfoPersonas/grafico.png" alt="">
+                <p class="textoInfoESG">General</p>
+                <p class="contadorInicial" id="generalCount">0</p>
+            </div>
+            
+            <div class="contenedorInfo">
+                <h3 class="tituloInfo">Reiniciar contador</h3>
+                <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
+                <button class="botones">Reset</button>
+            </div>
+
+            <div class="contenedorInfo">
+                <h3 class="tituloInfo">Reportes</h3>
+                <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
+                <button id="mostrarCalendario" class="botones">Generar</button>
+            </div>
+
+            <!-- <div class="contenedorInfo">
+                <h3 class="tituloInfo">Reporte excel</h3>
+                <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
+                <button class="botones">Generar</button>
+            </div> -->
         </div>
-        <div class="infoPersonas">
-            <img class="iconosEntradas" src="/contenidoInfoPersonas/puertaSalida.png" alt="">
-            <p class="textoInfoESG">Salidas</p>
-            <p class="contadorInicial" id="rightCount">0</p>
-        </div>
-        <div class="infoPersonas">
-            <img class="iconosEntradas" src="/contenidoInfoPersonas/grafico.png" alt="">
-            <p class="textoInfoESG">General</p>
-            <p class="contadorInicial" id="generalCount">0</p>
-        </div>
+
+        <div class="contenedorPanelyCamara">
+            <div class="panelUsuario">
+                <h1 class="tituloInicial">Sistemas Computacionales</h1>
+                <!-- <div class="iconoContainer">
+                    <img class="iconoUsuario" src="/contenidoInfoPersonas/usuario.png" alt="">
+                    <p>Izael Mejía Lozada</p>
+                </div> -->
+                <div class="timeContainer">
+                    <p id="realTime"></p>
+                </div>
+            </div> 
+            
+            <div id="container" class="contenedorCamara">
+                <video id="video" class="video" width="640" height="480" autoplay></video>
+                <canvas id="output"  class="output" width="640" height="480"></canvas>
+            </div>
         
-        <div class="contenedorInfo">
-            <h3 class="tituloInfo">Reiniciar contador</h3>
-            <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
-            <button class="botones">Reset</button>
-        </div>
-
-        <div class="contenedorInfo">
-            <h3 class="tituloInfo">Reporte pdf</h3>
-            <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
-            <button class="botones">Generar</button>
-        </div>
-
-        <div class="contenedorInfo">
-            <h3 class="tituloInfo">Reporte excel</h3>
-            <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
-            <button class="botones">Generar</button>
+            <!-- Inicia Calendario -->
+            <div class="contenedorGenerador" id="calendario">
+                <div class="cerrarCalendario" id="cerrarCalendario">X</div>
+                <div class="contenedorCalendario">
+                    <input type="text" id="rangoFechas" placeholder="Selecciona fecha">
+                </div>
+                <div class="rangoHoras">
+                    <input type="text" id="horaInicio" placeholder="Hora de inicio">
+                    <input type="text" id="horaFin" placeholder="Hora de fin">
+                </div>
+                <div class="botonesReportes">
+                    <button class="botonGeneraReporte" id="mostrarRango">Excel</button>
+                    <button class="botonGeneraReporte" id="mostrarRango">Pdf</button>
+                </div>
+                <p id="rangoSeleccionado"></p>
+            </div>
+            <!-- Termina Calendario -->
         </div>
     </div>
-
-    <div class="contenedorPanelyCamara">
-        <div class="panelUsuario">
-            <h1 class="tituloInicial">Sistemas Computacionales</h1>
-            <!-- <div class="iconoContainer">
-                <img class="iconoUsuario" src="/contenidoInfoPersonas/usuario.png" alt="">
-                <p>Izael Mejía Lozada</p>
-            </div> -->
-            <div class="timeContainer">
-                <p id="realTime"></p>
-            </div>
-        </div> 
-        
-        <div id="container" class="contenedorCamara">
-            <video id="video" class="video" width="640" height="480" autoplay></video>
-            <canvas id="output"  class="output" width="640" height="480"></canvas>
-        </div>
-    <div>
-
-
-   </div>
-
     <!-- LLamamos al DOM aquí -->
     <!-- <div id="container">
         <video id="video" width="640" height="480" autoplay></video>
@@ -82,7 +103,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
     <script src="https://docs.opencv.org/master/opencv.js"></script>
-    <script src="tiempo.js"></script>
+    <script src="tiempo.js"></script>       <!-- Mostrar Tiempo -->
+    <script src="fechaReporte.js"></script>  <!-- Calendario -->
 
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
