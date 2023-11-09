@@ -14,16 +14,16 @@ router.post('/registro', (req, res) => {
     [nombre, correo, contrasena],
     (error, results) => {
       if (error) {
-        console.error('Error al registrar el usuario:', error);
-        res.send(error,'Error al registrar el usuario');
+        console.error(error); // Registra el error en la consola del servidor
+        res.status(500).send('Error al validar inicio de sesión');
       }
       const resultado = results[0][0];
       //console.log(results);
       if (resultado && resultado.resultado === 'Registro Exitoso') {
-
-        //const indexPath = path.join(__dirname,'..','..', 'index.html');
-        //res.sendFile(indexPath);
         res.redirect('/')
+      }else {
+        console.log('Error al registrar');
+        res.redirect('/registro');
       }
     }
   );
