@@ -149,3 +149,5 @@ function sendDataToServer(count, direction) {
 
     // Iniciar el proceso cuando la página se carga
     start();
+
+    

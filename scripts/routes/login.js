@@ -8,12 +8,19 @@ router.post('/', (req, res) => {
   const correo = req.body.username;
   const contrasena = req.body.password;
 
+  // Validación de campos vacíos
+  if (!correo || !contrasena) {
+    console.log('Campos incompletos');
+    res.redirect('/');
+    return; // Detener la ejecución
+  }
+
   connection.query(
     'CALL validar_inicio_sesion(?, ?)',
     [correo, contrasena],
     (error, results) => {
       if (error) {
-        console.error(error); // Registra el error en la consola del servidor
+        console.error(error);
         res.status(500).send('Error al validar inicio de sesión');
       } else {
         const mensaje = results[0][0];
@@ -28,5 +35,6 @@ router.post('/', (req, res) => {
     }
   );
 });
+
 
 module.exports = router;
