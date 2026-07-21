@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="/styles/reportes.css">
 </head>
 <body>
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
     
    <div class="contenedorTodo">
 
@@ -38,39 +43,59 @@
             </div>
             
             <div class="contenedorInfo">
+                <h3 class="tituloInfo">Modo de Detección</h3>
+                <p class="textoInfo">Seleccione la funcionalidad de análisis de video activa.</p>
+                <select id="detectionMode" class="selectModo">
+                    <option value="counter" selected>Conteo de Personas</option>
+                    <option value="intrusion">Control de Intrusión (Zona Restringida)</option>
+                    <option value="threat">Detección de Amenazas (Armas)</option>
+                </select>
+            </div>
+
+            <div class="contenedorInfo">
                 <h3 class="tituloInfo">Reiniciar contador</h3>
-                <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
-                <button class="botones">Reset</button>
+                <p class="textoInfo">El botón reset permitirá al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
+                <button class="botones" id="resetCount">Reset</button>
             </div>
 
             <div class="contenedorInfo">
                 <h3 class="tituloInfo">Reportes</h3>
-                <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
+                <p class="textoInfo">Generar reportes del flujo y alertas de seguridad en formatos descargables (Excel / PDF).</p>
                 <button id="mostrarCalendario" class="botones">Generar</button>
             </div>
 
-            <!-- <div class="contenedorInfo">
-                <h3 class="tituloInfo">Reporte excel</h3>
-                <p class="textoInfo">El botón reset permitira al usuario reiniciar el contador sobre personas entrantes y salientes del edificio.</p>
-                <button class="botones">Generar</button>
-            </div> -->
+            <div class="contenedorInfo" style="background-color: transparent; border: none; min-height: auto; margin-top: 30px;">
+                <form action="/logout" method="POST" style="width: 100%;">
+                    <button type="submit" class="botones" style="background-color: #dc2626; box-shadow: none;">Cerrar Sesión</button>
+                </form>
+            </div>
         </div>
 
         <div class="contenedorPanelyCamara">
             <div class="panelUsuario">
                 <h1 class="tituloInicial">Sistemas Computacionales</h1>
-                <!-- <div class="iconoContainer">
-                    <img class="iconoUsuario" src="/contenidoInfoPersonas/usuario.png" alt="">
-                    <p>Izael Mejía Lozada</p>
-                </div> -->
-                <div class="timeContainer">
-                    <p id="realTime"></p>
+                <div class="optionsContainer">
+                    <button class="optionsBtn" id="optionsBtn">⚙️ Opciones</button>
+                    <div class="optionsMenu" id="optionsMenu">
+                        <div class="menuHeader">Configuración</div>
+                        <div class="menuItem" id="themeLight">☀️ Tema Claro</div>
+                        <div class="menuItem" id="themeDark">🌙 Tema Oscuro</div>
+                    </div>
                 </div>
             </div> 
             
-            <div id="container" class="contenedorCamara">
-                <video id="video" class="video" width="640" height="480" autoplay></video>
-                <canvas id="output"  class="output" width="640" height="480"></canvas>
+            <div class="contenedorCamarayAlertas">
+                <div id="container" class="contenedorCamara">
+                    <video id="video" class="video" width="640" height="480" autoplay></video>
+                    <canvas id="output" class="output" width="640" height="480"></canvas>
+                </div>
+                
+                <div class="contenedorAlertas">
+                    <h3 class="tituloPanelAlertas">Alertas de Seguridad (Recientes)</h3>
+                    <div id="listaAlertas" class="listaAlertas">
+                        <p class="alertaVacia">No hay alertas de seguridad registradas.</p>
+                    </div>
+                </div>
             </div>
         
             <!-- Inicia Calendario -->
@@ -104,7 +129,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
     <script src="https://docs.opencv.org/master/opencv.js"></script>
-    <script src="tiempo.js"></script>       <!-- Mostrar Tiempo -->
     <script src="fechaReporte.js"></script>  <!-- Calendario -->
 
     <!-- Axios -->
@@ -113,6 +137,35 @@
 
     <!-- Código JavaScript -->
     <script src="/Detector.js"></script>
-    
+
+    <script>
+        // Toggle de Menú de Opciones
+        const optionsBtn = document.getElementById('optionsBtn');
+        const optionsMenu = document.getElementById('optionsMenu');
+        
+        optionsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            optionsMenu.classList.toggle('active');
+        });
+        
+        document.addEventListener('click', () => {
+            optionsMenu.classList.remove('remove'); // Normal clean
+            optionsMenu.classList.remove('active');
+        });
+        
+        // Manejador de Temas
+        const themeLight = document.getElementById('themeLight');
+        const themeDark = document.getElementById('themeDark');
+        
+        themeLight.addEventListener('click', () => {
+            document.body.classList.remove('dark-theme');
+            localStorage.setItem('theme', 'light');
+        });
+        
+        themeDark.addEventListener('click', () => {
+            document.body.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark');
+        });
+    </script>
 </body>
 </html>

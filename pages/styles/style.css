@@ -1,148 +1,398 @@
-.contenedorTodo{
-    display: flex;
-    height: 100%;
-    width: 100%;
-    
+/* Configuración de Variables CSS para el Sistema de Temas (Claro y Oscuro) */
+:root {
+  --bg-main: #f8fafc;
+  --bg-sidebar: #ffffff;
+  --border-color: #cbd5e1;
+  --border-right-sidebar: rgb(209, 209, 211);
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --card-bg: #b8b8b818;
+  --alert-panel-bg: #ffffff;
+  --header-border: #f1f5f9;
+}
+
+body.dark-theme {
+  --bg-main: #0f172a;
+  --bg-sidebar: #1e293b;
+  --border-color: #334155;
+  --border-right-sidebar: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --card-bg: rgba(51, 65, 85, 0.4);
+  --alert-panel-bg: #1e293b;
+  --header-border: #334155;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.contenedorTodo {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--bg-sidebar);
+  transition: background-color 0.3s;
 }
 
 /* Inicia Contenido de Información de la camara */
-.conteidoInfo{
-    height: 100vh;
-    width: 40%;
-    border-right: 2px solid rgb(209, 209, 211);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.logo{
-    width: 250px;
-}
-.infoPersonas{
-    height: auto;
-    width: 80%;
-    background-color: #004791;
-    border-radius: 10px;
-    margin-top: 5px;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    font-size: 20px;
-    font-weight: 600;
-    align-content: center;
-    align-items: center;
-    
-}
-.contadorInicial{
-    margin-right: 20px;
-    font-size: 40px;
+.conteidoInfo {
+  height: 100vh;
+  width: 40%;
+  border-right: 2px solid var(--border-right-sidebar);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding-bottom: 30px;
+  background-color: var(--bg-sidebar);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
-.textoInfoESG{
-    font-size: 25px;
+.logo {
+  width: 250px;
 }
 
-.iconosEntradas{
-    width: 55px;
-    height: 55px;
-    padding-left: 5px;
-    filter: brightness(0) invert(1); /* Cambia el color a blanco */
+.infoPersonas {
+  height: auto;
+  width: 80%;
+  background-color: #004791;
+  border-radius: 10px;
+  margin-top: 5px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 600;
+  align-content: center;
+  align-items: center;
 }
 
-
-.contenedorInfo{
-    margin-top: 15px;
-    width: 80%;
-    height: 200px;
-    background-color: #b8b8b818;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
+.contadorInicial {
+  margin-right: 20px;
+  font-size: 40px;
 }
 
-.tituloInfo{
-    font-size: 22px;
-    margin-top: 5px;
-}
-.textoInfo{
-    color: #24222084;
+.textoInfoESG {
+  font-size: 25px;
 }
 
-.botones{
-    width: 90%;
-    border: none;
-    background-color: #004791;
-    color: #fff;
-    font-size: 18px;
-    border-radius: 8px;
-    padding: 10px;
-    font-weight: 600;
-    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+.iconosEntradas {
+  width: 55px;
+  height: 55px;
+  padding-left: 5px;
+  filter: brightness(0) invert(1); /* Cambia el color a blanco */
+}
+
+.contenedorInfo {
+  margin-top: 15px;
+  width: 80%;
+  min-height: 160px;
+  height: auto;
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding: 15px 10px;
+  transition: background-color 0.3s;
+}
+
+.tituloInfo {
+  font-size: 20px;
+  margin-top: 5px;
+  color: var(--text-primary);
+  transition: color 0.3s;
+}
+
+.textoInfo {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.selectModo {
+  width: 90%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  font-size: 14px;
+  background-color: var(--bg-sidebar);
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  font-weight: 500;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.botones {
+  width: 90%;
+  border: none;
+  background-color: #004791;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 600;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.botones:hover {
+  background-color: #00366d;
+}
+
+.botones:active {
+  transform: scale(0.98);
 }
 /* Termina Contenido de Información de la camara */
 
-
-/* Inicia panel usuario  */
+/* Inicia panel usuario / Header */
 .panelUsuario {
-    display: flex;
-    justify-content: space-between; /* Espacio entre el título y el icono */
-    align-items: center;
+  display: flex;
+  justify-content: space-between; /* Espacio entre el título y el icono/opciones */
+  align-items: center;
+  height: 10%;
+  width: 100%;
+  border-bottom: 2px solid var(--border-color);
+  background-color: var(--bg-sidebar);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .tituloInicial {
-    flex: 1; 
-    text-align: center;
+  flex: 1;
+  text-align: center;
+  color: var(--text-primary);
+  font-size: 24px;
+  font-weight: 700;
+  transition: color 0.3s;
 }
 
-.iconoContainer {
-    display: flex;
-    align-items: center;
-    margin-right: 40px;
+/* Contenedor de Opciones / Menú de configuración */
+.optionsContainer {
+  position: relative;
+  padding-right: 30px;
 }
 
-.timeContainer{
-    padding-right: 20px;
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.optionsBtn {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s, border-color 0.3s, color 0.3s;
+}
+
+.optionsBtn:hover {
+  background-color: var(--border-color);
+}
+
+.optionsMenu {
+  display: none;
+  position: absolute;
+  top: 45px;
+  right: 30px;
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  width: 180px;
+  overflow: hidden;
+  animation: fadeInMenu 0.15s ease-out;
+}
+
+@keyframes fadeInMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.optionsMenu.active {
+  display: block;
+}
+
+.menuHeader {
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.menuItem {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.menuItem:hover {
+  background-color: var(--card-bg);
 }
 
 .iconoUsuario {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 }
-
-
 /* Termina panel usuario  */
 
-.contenedorPanelyCamara{
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    z-index: 1;
+.contenedorPanelyCamara {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.panelUsuario{
-    height: 10%;
-    width: 100%;
-    border-bottom: 2px solid rgb(209, 209, 211);
+.contenedorCamarayAlertas {
+  display: flex;
+  flex-direction: row;
+  height: 90%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 20px;
+  background-color: var(--bg-main);
+  transition: background-color 0.3s;
 }
 
-
-#container {
-    position: relative;
-    width: 100%;
-    height: 90%;
-    background-color: azure;
+.contenedorCamara {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  background-color: #000;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 #video, #output {
-    position: absolute;
-    top: 0;
-    left: 0;    
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 480px;
 }
 
+.contenedorAlertas {
+  flex: 1;
+  background-color: var(--alert-panel-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: 480px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
 
+.tituloPanelAlertas {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--header-border);
+  padding-bottom: 8px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.listaAlertas {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 5px;
+}
+
+.alertaItem {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  border-left: 4px solid;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alertaItem.intrusión {
+  background-color: #fffbeb;
+  color: #b45309;
+  border-left-color: #d97706;
+}
+
+body.dark-theme .alertaItem.intrusión {
+  background-color: rgba(217, 119, 6, 0.15);
+  color: #fbbf24;
+}
+
+.alertaItem.amenaza {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border-left-color: #dc2626;
+}
+
+body.dark-theme .alertaItem.amenaza {
+  background-color: rgba(220, 38, 38, 0.15);
+  color: #fca5a5;
+}
+
+.alertaHeader {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.alertaHora {
+  font-size: 11px;
+  color: var(--text-secondary);
+  transition: color 0.3s;
+}
+
+.alertaVacia {
+  text-align: center;
+  color: var(--text-secondary);
+  padding-top: 50px;
+  font-style: italic;
+  transition: color 0.3s;
+}
